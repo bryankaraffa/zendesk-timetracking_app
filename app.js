@@ -30,7 +30,7 @@
       'app.willDestroy'         : 'onAppWillDestroy',
       'ticket.save'             : 'onTicketSave',
       'ticket.submit.done'      : 'onTicketSubmitDone',
-      'ticket.form.id.changed'  : 'onTicketFormChanged',
+      '*.changed'               : 'onAnyTicketFieldChanged',
       'ticket.updated'          : 'onTicketUpdated',
       'fetchAuditsPage.done'    : 'onFetchAuditsPageDone',
       'fetchAllAudits.done'     : 'onFetchAllAuditsDone',
@@ -61,6 +61,9 @@
         this.storage.totalTimeFieldId = parseInt(this.setting('total_time_field_id'), 10);
         this.storage.timeFieldId = parseInt(this.setting('time_field_id'), 10);
       }
+      if (this.setting('hide_from_agents') && this.currentUser().role() !== 'admin') {
+        this.hide();
+      }
     },
 
     onAppActivated: function(app) {
@@ -85,12 +88,12 @@
       }
     },
 
-    onTicketFormChanged: function() {
+    onAnyTicketFieldChanged: function() {
       _.defer(this.hideFields.bind(this));
     },
 
     onTicketSave: function() {
-      if (this.setting('time_submission')) {
+      if (this.setting('time_submission') && this.visible()) {
         return this.promise(function(done, fail) {
           this.saveHookPromiseDone = done;
           this.saveHookPromiseFail = fail;
@@ -346,7 +349,7 @@
       _.each([this.timeFieldLabel(), this.totalTimeFieldLabel()], function(f) {
         var field = this.ticketFields(f);
 
-        if (field) {
+        if (field && field.isVisible()) {
           field.hide();
         }
       }, this);

@@ -39,6 +39,16 @@
           "value": "Agents can see timelog activity on tickets."
         }
       },
+      "hide_from_agents": {
+        "label": {
+          "value": "Hide the app from Agents",
+          "title": "This is a checkbox setting label. If the admin checks this box the app will be hidden from any agent who is not an Admin."
+        },
+        "helpText": {
+          "value": "The app will not be shown to Agents who do not have the 'Admin' role. This also prevents them from being able to see & edit the time upon submission.",
+          "title": "This is the explanation helptext of the hide_from_agents checkbox for the admin who is installing the app."
+        }
+      },
       "manual_pause_resume": {
         "label": {
           "title": "This is an app setting allowing the admin to choose if he wants the timer controls allowing the agents to pause of reset the timer",

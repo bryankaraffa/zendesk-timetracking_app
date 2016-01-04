@@ -13,7 +13,7 @@
     "ticket_sidebar"
   ],
   "frameworkVersion": "1.0",
-  "version": "0.3.6",
+  "version": "0.4.0",
   "parameters": [
     {
       "name": "time_field_id",
@@ -27,6 +27,11 @@
       "name": "display_timelogs",
       "type": "checkbox",
       "default": true
+    },
+    {
+      "name": "hide_from_agents",
+      "type": "checkbox",
+      "default": false
     },
     {
       "name": "auto_pause_resume",
